@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="msgs-wrapper">
+    <view class="msgs" wx:for="{{msgs}}">
+      <view wx:if="{{ item.msgType == 'TIMFaceElem' }}" >
+          <view class="msg-item">
+            <text class="nickname">{{item.fromAccountNick}}</text>
+            <image src="{{ item.content }}" class="imageFace"></image>
+          </view>
+      </view>
+      <view wx:else>
+          <text class="msg-item"><text class="nickname">{{item.fromAccountNick}}</text> : {{item.content}}</text>
+      </view>
+    </view>
+    </view>
+  <view class="input-section">
+      <input value="{{msgContent}}"  placeholder="" bindconfirm="bindConfirm" />
+      <button class="love" bindtap="bindTap"></button>
+  </view>
+</view>

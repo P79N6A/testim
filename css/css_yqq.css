@@ -1,0 +1,93 @@
+body{background-color: #f9f7f8;}
+.msgShowTittele,.head{text-align: center; padding: 10px;border-bottom: 1px solid #cdcdcd;position: fixed;background: #fff;width: 100%;top: 0;}
+.bottom{bottom: 0;position: absolute;width: 100%;border-top: 1px solid #cdcdcd;padding: 10px 0px;text-align: center;background: #fff;margin-bottom: 0px;}
+.bottom li{display: inline-block;width: 30%;color: #676767;cursor: pointer;}
+ul{list-style: none;padding: 0px;margin-top: 40px;}
+.msg_li{border-bottom: 1px solid #cdcdcd;padding: 5px 0px;overflow: hidden;}
+.memberImg,.msg_li_img{float: left;width: 35px;height: 35px;border-radius: 50%;margin-left: 10px;margin-right: 10px;border: 1px solid #cdcdcd;border-radius: 50%;}
+.msg_li_time{float: right;margin-right:10px;color:#cdcdcd;}
+.disIn{display: inline-block;}
+.cdColor{color:#cdcdcd;}
+.greeColor{color:#428bca !important;}
+.friend{text-align: center;border-bottom: 1px solid #cdcdcd;padding: 10px 0px;background: #fff;}
+.friend li{display: inline-block;width: 30%;color: #676767;cursor: pointer;}
+.friend_frist_li{padding: 5px 0;border-bottom: 1px solid #cdcdcd;}
+.friend_list{border-bottom: 1px solid #c3c3c3;overflow: hidden;padding: 5px 0px;}
+.friend_list img{display: inline-block;width: 25px;height: 25px;margin-left: 30px;margin-right: 10px;border: 1px solid #cdcdcd;border-radius: 50%;}
+.ml15{margin-left:15px;}
+.setting_ul{margin-top: 15px;border-top: 1px solid #cdcdcd;overflow: hidden;background: #fff;}
+.setting_ul li{padding: 12px;border-bottom: 1px solid #cdcdcd;}
+.setting_button{width: 80%;margin-left: 10%;margin-top: 30px;border-radius: 4px;border: none;color: #fff;background-color: red;padding: 6px 0px;}
+.setting_userInfor{margin-top: 45px;background-color: #fff; border-top: 1px solid #cdcdcd;}
+.bF{background-color: #fff;margin-top: 0;}
+.setting{padding: 5px 0px;overflow: hidden;}
+#userImg{float: left;width: 35px;height: 35px;border-radius: 50%;margin-left: 10px;margin-right: 10px;border: 1px solid #cdcdcd;border-radius: 50%;}
+.userName{line-height: 35px;}
+.moreList{display: none;}
+#returnMember,#returnInfo,#msgReturn,#returnC,#returnMore,#returnF{float: left;cursor: pointer;color: #1e90ff;}
+#create{float: right;color: #1e90ff;cursor: pointer;}
+.GroupMemberList,.friend_list_more{border-bottom: 1px solid #c3c3c3;overflow: hidden;padding: 5px 0px;}
+.GroupMemberList{line-height: 30px;}
+.friend_list_more img{display: inline-block;width: 25px;height: 25px;margin-left: 30px;margin-right: 10px;}
+.msgShow,#createGroupDate,.searchAndAdd,#addGroup{display: none}
+.searchDiv{width: 100%;overflow: hidden;padding: 10px;margin-top: 40px;}
+.searchDiv input{width: 70%;border-radius: 4px;border: 1px solid #cdcdcd;padding: 3px;float: left;margin-right: 10px;}
+.searchButton{line-height: 26px;float: left;padding: 0 10px;border: 1px solid red;border-radius: 4px;background-color: red;color: #fff;}
+.addUser{float: right;margin-right: 20px;font-size: 20px;color: red;cursor: pointer;width: 20px;height: 30px;}
+.searchListDiv{float: left}
+.searchImg{width: 25px;height: 25px;margin-left: 30px;margin-right: 10px;float: left;margin-top: 6px;border: 1px solid #cdcdcd;border-radius: 50%;}
+.removeClass{float: right;margin-right: 15px;color:red;}
+.manageMember{float: right;margin-right: 15px;color:red;margin-top: 10px;}
+.memberList,.personalInfo,.groupInfo,.personalProfile,.showFace,#returnCreate,#chioceDiv,#createGroup{display: none;}
+.createDiv{padding:10px 10px 5px 10px;}
+.createDiv input,textarea{border-radius: 4px;border: 1px solid #cdcdcd;padding: 3px;}
+.createDiv p{float: left;width: 130px;text-align: right;font-weight: 600}
+#selectedList{float: left;border: 1px solid #cdcdcd;margin-bottom: 10px;border-radius: 4px;padding: 5px;min-width: 175px;min-height: 30px;max-height: 100px;overflow: auto;}
+.selectButton{border: none;border-radius: 4px;margin-left: 3px;background: red;color: #fff;padding: 3px;}
+.friend_chioce_list{border-bottom: 1px solid #c3c3c3;overflow: hidden;padding: 5px 0px;}
+.friend_chioce_list img{display: inline-block;width: 25px;height: 25px;margin-left: 30px;margin-right: 10px;border: 1px solid #cdcdcd;border-radius: 50%;}
+.showTip{text-align: center;}
+.showImgLeft{width: 35px;height: 35px;border-radius:50%;border:1px solid #cdcdcd;margin-right: 10px;float: left;margin-left: 10px;}
+.showImgRight{width: 35px;height: 35px;border-radius:50%;border:1px solid #cdcdcd;margin-left: 10px;float: right;margin-right: 10px}
+.msgShowPLeft{max-width: 70%;float: left;text-align: left;line-height: 35px;border-radius: 4px;border: 1px solid #cdcdcd;padding: 5px;background: #f0f8ff;}
+.msgShowPRight{max-width: 70%;float: right;text-align: right;line-height: 35px;border-radius: 4px;border: 1px solid #cdcdcd;padding: 5px;background: #f0f8ff;}
+.msgShowDiv{overflow: hidden;}
+.msgTimeLeft{text-align: left;color: #cdcdcd;padding: 5px 50px;}
+.msgTime{text-align: center;color: #cdcdcd;padding: 5px 50px;}
+.msgTimeRight{text-align: right;color: #cdcdcd;padding: 5px 50px;}
+#memDiv,.personalProfile,#msgShow,#moreList{margin-top: 40px;margin-bottom: 50px;overflow: scroll;}
+.msgSendDiv{position: fixed;width: 100%;bottom: 0;padding: 5px 0px;border-top: 1px solid #cdcdcd;background: #ececec;text-align: center}
+#sendMsg{width: 70%;border-radius: 4px;border: 1px solid #cdcdcd;padding:4px;}
+.sendButton{border: none;color: #fff;background: #0be1f9;padding: 5px 5px;border-radius: 4px;cursor: pointer;}
+ input,button:focus {outline: none;}
+ .msgShowPRight img,.msgShowPLeft img{max-width: 100px;}
+.faceBtn{background: url(../img/icon.png) no-repeat 0 0;cursor: pointer;display: block;width: 16px;height: 15px;margin: -2px 1px;display: inline-block;}
+#emotionUL li{float: left;}
+.showFace{display: block;position: fixed;bottom: 40px;padding: 5px;border-top: 1px solid #cdcdcd;background-color: #f7f0f0;display: none;}
+.faceBtn_face{background-position: 0 -397px;}
+.faceBtn_File{background-position: 0 -279px;}
+.faceBtn_Img{background-position: 0 -427px;}
+.showFace ul{margin-top:10px}
+#upd_pic,#upd_file{display: none;position: fixed;width: 70%;padding: 4px;opacity: 0;}
+.profileDiv{width: 100%;overflow: hidden;background: #fff;padding: 5px;margin: 5px 0px;}
+.profileDiv p{width: 100px;text-align: right;display: inline-block;color: #000000;}
+.profileDivInput{width: 70%;border-radius: 4px;border: 1px solid #cdcdcd;padding: 3px;}
+.editGroup{background-position: 0 -185px;margin-right: 10px;}
+.unread{float: right;border-radius: 10px;background: red;min-height: 20px;min-width: 38px;color: #fff;text-align: center;margin-right: 5px;display: none}
+.lookMember{background-position: 0 -369px;margin-right: 10px;}
+.bannedTo{float: right;color: #f90f84;margin-right: 10px;}
+.memBanned{background-position: 0 -514px;margin-right: 10px;}
+.kickList{background-position: 0 -41px;margin-right: 10px;}
+.mt40{margin-top: 40px;}
+.listSend{background-position: 0 -544px;margin-right: 10px;}
+.forbidDiv{display:none;background-color: rgba(0,0,0,0.3);height: 100%;width: 100%;position: absolute;top: 0;}
+.shutDiv{background-color: rgba(255, 255, 255, 0.73);margin-top: 200px;padding: 10px;overflow: hidden;}
+#groupMemberId,#groupIdName{color: #bf4141;}
+.shutTittle{width: 80px;text-align: right;display: inline-block;}
+#forbidTime{border: 1px solid #cdcdcd;border-radius: 4px;width: 65%;padding: 3;}
+.shutBtn{float: right;margin-left: 10px;border: none;color: #fff;border-radius: 4px;}
+.shutEsc{background-color: #6489ed;}
+.shutSure{background-color: #bf4141}
+#msgShow{max-height: 730px;min-height: 700px}
+.msgRomverLeft{float: left;margin-left: 10px;}
+.msgRomverRight{float: right;margin-right: 10px;}

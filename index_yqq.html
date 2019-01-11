@@ -1,0 +1,449 @@
+<html>
+
+<head>
+    <title>腾讯IM Web Demo(V1.7)_yqq</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/css_yqq.css" />
+</head>
+
+<body>
+    <div class="conetet">
+        <div class="head">腾讯IM Web Demo(V1.7)</div>
+
+        <!-- 会话列表 -->
+        <ul class="msg" id="msg">
+            <!-- <li class="msg_li">
+                <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">
+                <div class="disIn">
+                    <span  class="userName">第一条</span></br>
+                    <span class="cdColor">第一条消息</span>
+                </div>
+                <span class="msg_li_time">2017-04-11 16:38</span>
+            </li> -->
+        </ul>
+         <!-- 好友列表 -->
+        <div class="friendList" style="display:none">
+            <ul class="friend" id="friend">
+                <li value="Public">公开群</li>
+                <li value="Private">私有群</li>
+                <li value="ChatRoom">聊天室</li>
+            </ul>
+            <ul class="bF" id="bF">
+                <li class="friend_frist_li"><span class="ml15">我的好友</span></li>
+            </ul>
+
+            <button class="setting_button" onclick="add_Friend_Group(true)">添加好友</button>
+        </div>
+         <!-- 设置 -->
+        <div class="setting" style="display:none">
+            <div class="setting setting_userInfor">
+                <img id="userImg">
+                <div class="disIn">
+                    <span id="t_my_name"></span></br>
+                    <span class="cdColor">帐号ID：<span id="userID"></span></span>
+                </div>
+            </div>
+            <ul class="setting_ul">
+                <li onclick="applyFriendList()">好友申请<span style="float:right">></span></li>
+                <li onclick="applyGroupList()">群申请<span style="float:right">></span></li>
+                <li onclick="blackList()">黑名单<span style="float:right">></span></li>
+            </ul>
+            <button class="setting_button" onclick="quitClick_yqq()">退出登录</button>
+        </div>
+
+        <ul class="bottom" id="bottom">
+            <li>会话</li>
+            <li>联系人</li>
+            <li>设置</li>
+        </ul>
+    </div>
+    
+    <!-- 各群组、黑名单列表 -->
+    <div class="moreList" >
+        <div class="head"><span id="returnF">返回</span><span id="moreListTittle"></span><span id="create">创建</span></div>
+        <div id="moreList"></div>
+        <button class="setting_button addClass" id="addGroup" onclick="add_Friend_Group(false)">添加群组</button>
+    </div>
+
+    <!-- 添加好友、添加群组 -->
+    <div class="searchAndAdd">
+        <div class="head"><span id="returnMore">返回</span><span>搜索与添加</span></div>
+        <div class="searchDiv"><input value="" id="searchId" placeholder='请输入要查找的ID'/><div class="searchButton" id="searchButton">搜索</div></div>
+        <div class="searchList" id="searchList">
+            
+        </div>
+    </div>
+    
+    <!-- 创建群组 -->
+    <div id="createGroupDate">
+        <div class="head"><span id="returnC">返回</span><span id="moreListTittle">创建群组</span></div>
+        <!-- 选择好友弹出层 -->
+        <div id="chioceDiv" class="mt40"></div>
+        <div class="createDiv mt40"><p>选择加群好友：</p><div id="selectedList"></div><button class="selectButton">选择</button></div>
+        <div class="createDiv"><p>请自定义群组ID：</p><input type="text" id="groupId"/></div>
+        <div class="createDiv"><p>请输入群名称：</p><input type="text" id="groupName"/></div>
+        <div class="createDiv"><p>请输入群头像URL：</p><input type="text" id="groupUrl"/></div>
+        <div class="createDiv">
+            <p>请选择群组类型：</p>
+            <input type="radio" name="groptType" id="groptTypeChat" value="ChatRoom"> 聊天室
+            <input type="radio" name="groptType" id="groptTypePublic" value="Public"> 公开群
+            <input type="radio" name="groptType" id="groptTypePrivate" value="Private"> 私有群
+        </div>
+        <div class="createDiv">
+            <p>请选择加群方式：</p>
+            <input type="radio" name="groptMode" id="groptModeFree" value="FreeAccess"> 自由加入
+            <input type="radio" name="groptMode" id="groptModeNeed" value="NeedPermission"> 需要验证
+            <input type="radio" name="groptMode" id="groptModeDis" value="DisableApply"> 禁止加群
+        </div>
+        <div class="createDiv"><p>公告：</p><textarea rows='3' cols='22' id="groupNotice"></textarea></div>
+        <div class="createDiv"><p>简介：</p><textarea rows='3' cols='22' id="groupIntro"></textarea></div>
+        <button class="setting_button" id="createG" onclick="createGroup()">创建</button>
+         <button class="setting_button" id="returnCreate">确认选择</button>
+    </div>
+    
+    <!-- 消息显示 -->
+    <div class="msgShow">
+        <div class="msgShowTittele"><span id="msgReturn">返回</span><span id="msgShowTittele"></span></div>
+        <div id="msgShow"></div>
+        <!-- 显示表情列表 -->
+        <div class="showFace">
+            <ul id="emotionUL"></ul>
+        </div>
+        <!--消息发送窗口-->
+        <div class="msgSendDiv">
+            <input type="file" id="upd_pic"/>
+            <input type="file" id="upd_file"/>
+            <input type="text" id="sendMsg" />
+            <a class="faceBtn faceBtn_face" title="选择表情" onclick="showFace()"></a>
+            <a class="faceBtn faceBtn_Img" title="选择图片" onclick="chioceImg()"></a>
+            <a class="faceBtn faceBtn_File" title="选择文件" onclick="chioceFile()"></a>
+            <button class="sendButton">发送</button>
+        </div>
+    </div>
+
+    <!-- 个人资料、群组资料 -->
+    <div class="personalProfile">
+        <div class="head"><span id="returnInfo">返回</span><span id="moreListTittle">个人资料</span></div>
+        <div class="personalInfo" id="personalInfo">
+           <div class="profileDiv"><p>昵称：</p><input type="text" id="personalName" class="profileDivInput"/></div>
+            <div class="profileDiv"><p>头像URL：</p><input type="text" id="personalUrl" class="profileDivInput"/></div>
+            <div class="profileDiv" id="sexGender">
+                <p>性别：</p>
+                <input type="radio" name="sex" id="sexMale" value="Gender_Type_Male"> 男
+                <input type="radio" name="sex" id="sexFemale" value="Gender_Type_Female"> 女
+            </div>
+            <div class="profileDiv" id="allowTypeChoice">
+                <p>加好友设置：</p>
+                <input type="radio" name="addSetting" id="addSettingNeed" value="AllowType_Type_NeedConfirm"> 需要确认
+                <input type="radio" name="addSetting" id="addSettingAll" value="AllowType_Type_AllowAny"> 允许任何人
+                <input type="radio" name="addSetting" id="addSettingDeny" value="AllowType_Type_DenyAny"> 拒绝任何人
+            </div>
+            <button class="setting_button" id="upProfile">提交修改</button>
+        </div>
+
+         <div class="groupInfo" id="groupInfo">
+            <div class="profileDiv"><p>群名称：</p><input type="text" id="upGroupName" class="profileDivInput"/></div>
+            <div class="profileDiv"><p>头像URL：</p><input type="text" id="upGroupUrl" class="profileDivInput"/></div>
+            <div class="profileDiv">
+                <p>公告：</p>
+                <textarea rows='3' cols='22' id="groupNoticeUp" class="profileDivInput"></textarea>
+            </div>
+            <div class="profileDiv">
+                <p>简介：</p>
+                <textarea rows='3' cols='22' id="groupIntroUp" class="profileDivInput"></textarea>
+            </div>
+            <button class="setting_button" id='upGroup'>提交修改</button>
+        </div>
+        
+    </div>
+
+     <!-- 查看群成员、与群成员操作 -->
+    <div class="memberList">
+        <div class="head"><span id="returnMember">返回</span><span>群成员列表</span></div>
+        <div id="memDiv"></div>
+    </div>
+
+    <!-- 禁言弹出层 -->
+    <div class="forbidDiv">
+        <div class="shutDiv">
+            <p>给"<span id="groupIdName"></span>"群成员禁言</p>
+            <div><p class="shutTittle">成员ID：</p><span id="groupMemberId"></span></div>
+            <div><p class="shutTittle">禁言时间：</p><input type="text" value="0" id="forbidTime"/></div>
+            <div><button class="shutBtn shutEsc" onclick="escShut()">取消禁言</button><button class="shutBtn shutSure" onclick="forbid()">确认禁言</button></div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="js/lib/jquery/jquery.js"></script>
+    <script type="text/javascript" src="https://tls.qcloud.com/libs/api.min.js"></script>
+    <script type="text/javascript" src="sdk/webim.js"></script>
+    <script type="text/javascript" src="js/login/login.js"></script>
+    <script type="text/javascript" src="js/msg/receive_new_msg.js"></script>
+    <!-- 初始化代码 -->
+    <script type="text/javascript" src="js/base_yqq.js"></script>
+    <!--web im 监听群系统通知消息 示例代码-->
+    <script type="text/javascript" src="js/msg/receive_group_system_msg.js"></script>
+    <!--web im 监听好友系统通知消息 示例代码-->
+    <script type="text/javascript" src="js/msg/receive_friend_system_msg.js"></script>
+    <!--web im 监听资料系统通知消息 示例代码-->
+    <script type="text/javascript" src="js/msg/receive_profile_system_msg.js"></script>
+    <!--web im sdk 登出 示例代码-->
+    <script type="text/javascript" src="js/logout/logout.js"></script>
+    <!--用于获取文件MD5 js api(发送图片时用到)-->
+    <script type="text/javascript" src="js/lib/md5/spark-md5.js"></script>
+    <script type="text/javascript">
+     //官方 demo appid,需要开发者自己修改（托管模式）
+        var sdkAppID = "1400026373";
+        var accountType = 11183;
+        //当前用户身份
+        var loginInfo = {
+            'sdkAppID': sdkAppID, //用户所属应用id,必填
+            'accountType': accountType, //用户所属应用帐号类型，必填
+            'identifier': null, //当前用户ID,必须是否字符串类型，必填
+            'userSig': null, //当前用户身份凭证，必须是字符串类型，必填
+            'identifierNick': null, //当前用户昵称，不用填写，登录接口会返回用户的昵称，如果没有设置，则返回用户的id
+            'headurl': 'img/me.jpg' //当前用户默认头像，选填，如果设置过头像，则可以通过拉取个人资料接口来得到头像信息
+        };
+
+        var options = {
+            'isAccessFormalEnv': true, //是否访问正式环境，默认访问正式，选填。为true为正式环境
+           'isLogOn': 0 //是否开启控制台打印日志,默认开启，选填
+        }
+
+        var infoMap = [];
+        var emotionFlag = false; //是否打开过表情选择框
+
+        //监听连接状态回调变化事件
+        var onConnNotify = function(resp) {
+            var info;
+            switch (resp.ErrorCode) {
+                case webim.CONNECTION_STATUS.ON:
+                    webim.Log.warn('建立连接成功: ' + resp.ErrorInfo);
+                    break;
+                case webim.CONNECTION_STATUS.OFF:
+                    info = '连接已断开，无法收到新消息，请检查下你的网络是否正常: ' + resp.ErrorInfo;
+                    // alert(info);
+                    webim.Log.warn(info);
+                    break;
+                case webim.CONNECTION_STATUS.RECONNECT:
+                    info = '连接状态恢复正常: ' + resp.ErrorInfo;
+                    // alert(info);
+                    webim.Log.warn(info);
+                    break;
+                default:
+                    webim.Log.error('未知连接状态: =' + resp.ErrorInfo);
+                    break;
+            }
+        };
+
+        var getPrePageC2CHistroyMsgInfoMap = {}; //保留下一次拉取好友历史消息的信息
+        var getPrePageGroupHistroyMsgInfoMap = {}; //保留下一次拉取群历史消息的信息
+
+        //监听（多终端同步）群系统消息方法，方法都定义在receive_group_system_msg.js文件中
+        //注意每个数字代表的含义，比如，
+        //1表示监听申请加群消息，2表示监听申请加群被同意消息，3表示监听申请加群被拒绝消息
+        var onGroupSystemNotifys = {
+           // "1": onApplyJoinGroupRequestNotify, //申请加群请求（只有管理员会收到）
+            "2": onApplyJoinGroupAcceptNotify, //申请加群被同意（只有申请人能够收到）
+            "3": onApplyJoinGroupRefuseNotify, //申请加群被拒绝（只有申请人能够收到）
+            "4": onKickedGroupNotify, //被管理员踢出群(只有被踢者接收到)
+            "5": onDestoryGroupNotify, //群被解散(全员接收)
+            "6": onCreateGroupNotify, //创建群(创建者接收)
+            "7": onInvitedJoinGroupNotify, //邀请加群(被邀请者接收)
+            "8": onQuitGroupNotify, //主动退群(主动退出者接收)
+            "9": onSetedGroupAdminNotify, //设置管理员(被设置者接收)
+            "10": onCanceledGroupAdminNotify, //取消管理员(被取消者接收)
+            "11": onRevokeGroupNotify, //群已被回收(全员接收)
+            "15": onReadedSyncGroupNotify, //群消息已读同步通知
+            "255": onCustomGroupNotify //用户自定义通知(默认全员接收)
+        };
+
+        //监听好友系统通知函数对象，方法都定义在receive_friend_system_msg.js文件中
+        var onFriendSystemNotifys = {
+            "1": onFriendAddNotify, //好友表增加
+            "2": onFriendDeleteNotify, //好友表删除
+           // "3": onPendencyAddNotify, //未决增加
+            "4": onPendencyDeleteNotify, //未决删除
+            "5": onBlackListAddNotify, //黑名单增加
+            "6": onBlackListDeleteNotify //黑名单删除
+        };
+
+        //IE9(含)以下浏览器用到的jsonp回调函数
+        function jsonpCallback(rspData) {
+            webim.setJsonpLastRspData(rspData);
+        }
+
+         var onC2cEventNotifys = {
+            "92": onMsgReadedNotify, //消息已读通知
+        };
+
+        //监听资料系统通知函数对象，方法都定义在receive_profile_system_msg.js文件中
+        var onProfileSystemNotifys = {
+            "1": onProfileModifyNotify //资料修改
+        };
+        var recentSessMap = {}; //保存最近会话列表
+
+         //监听事件
+        var listeners = {
+            "onConnNotify": onConnNotify //监听连接状态回调变化事件,必填
+                ,
+            "jsonpCallback": jsonpCallback //IE9(含)以下浏览器用到的jsonp回调函数，
+                ,
+            "onMsgNotify": onMsgNotify //监听新消息(私聊，普通群(非直播聊天室)消息，全员推送消息)事件，必填
+                ,
+            "onGroupSystemNotifys": onGroupSystemNotifys //监听（多终端同步）群系统消息事件，如果不需要监听，可不填
+                ,
+            "onGroupInfoChangeNotify": onGroupInfoChangeNotify //监听群资料变化事件，选填
+                ,
+            "onFriendSystemNotifys": onFriendSystemNotifys //监听好友系统通知事件，选填
+                ,
+            "onProfileSystemNotifys": onProfileSystemNotifys //监听资料系统（自己或好友）通知事件，选填
+                ,
+            "onKickedEventCall": onKickedEventCall //被其他登录实例踢下线
+                ,
+            "onC2cEventNotifys": onC2cEventNotifys //监听C2C系统消息通道
+                ,
+            "onAppliedDownloadUrl": onAppliedDownloadUrl //申请文件/音频下载地址的回调
+        };
+
+          //判断是否已经拿到临时身份凭证
+        if (TLSHelper.getQuery('tmpsig')) {
+            if (loginInfo.identifier == null) {
+                //console.info('start fetchUserSig');
+                //获取正式身份凭证，成功后会回调tlsGetUserSig(res)函数
+                TLSHelper.fetchUserSig();
+            }
+        } else{
+            tlsLogin();
+        }
+
+        var msgflow = document.getElementById('msgShow');
+        var bindScrollHistoryEvent = {
+            init: function() {
+                msgflow.onscroll = function() {
+                    if (msgflow.scrollTop == 0) {
+                        msgflow.scrollTop = 10;
+                        if (selType == webim.SESSION_TYPE.C2C) {
+                            getPrePageC2CHistoryMsgs();
+                        } else {
+                            getPrePageGroupHistoryMsgs();
+                        }
+
+                    }
+                }
+            },
+            reset: function() {
+                msgflow.onscroll = null;
+            }
+        };
+
+        $(".bottom").find('li').click(function(){
+            $(".bottom").find('li').removeClass("greeColor");
+            $(this).addClass('greeColor');
+            if($(this).text()=="会话"){
+                $('.msg').show();
+                $(".setting").hide();
+                $('.friendList').hide();
+            }else if($(this).text()=="联系人"){
+                $('.friendList').show();
+                $('.msg').hide();
+                $(".setting").hide();
+            }else{
+                $(".setting").show();
+                $('.msg').hide();
+                $('.friendList').hide();
+            }
+        })
+
+        $('.friend_frist_li').click(function(){
+            $('.friend_list').toggle();
+        })
+
+        $('#returnF').click(function(){
+            $('.conetet').show();
+            $('.moreList').hide();
+            $('.friend_list_more').remove();
+        })
+
+        function add_Friend_Group(value){
+            $('.conetet').hide();
+            $('.moreList').hide();
+            $('.searchAndAdd').show();
+            if(value){
+                $('.searchAndAdd').addClass('friendIdentify');
+            }else{
+                $('.searchAndAdd').addClass('GroupIdentify');
+            }
+            
+        }
+
+        $('#returnMore').click(function(){
+            $('.conetet').show();
+            $('.searchAndAdd').hide();
+            $('.friend_list_more').remove();
+            $('#searchId').val('');
+            $('.searchAndAdd').removeClass('friendIdentify');
+            $('.searchAndAdd').removeClass('GroupIdentify');
+        })
+
+        $('#create').click(function(){
+            $('.moreList').hide();
+            $('.conetet').hide();
+            $('#createGroupDate').show();
+           // $('.friend_list').remove();
+            $('.friend_list_more').remove();
+        })
+
+        $('#returnC').click(function(){
+            $('.conetet').show();
+            $('#createGroupDate').hide();
+            $('.friend_list_more').remove();
+        })
+
+        $('.selectButton').click(function(){
+            $('#chioceDiv').show();
+            $('.createDiv').hide();
+            $('#createG').hide();
+            $('#returnCreate').show();
+        })
+
+        $('#returnCreate').click(function(){
+            $('#chioceDiv').hide();
+            $('.createDiv').show();
+            $('#createG').show();
+            $('#returnCreate').hide();
+        })
+
+        $('#msgReturn').click(function(){
+             $('.conetet').show();
+             $('.msgShow').hide();
+             $('#msg').show();
+             $('.msgShowDiv').remove();
+             $('.friendList').hide();
+        })
+
+        $('#returnInfo').click(function(){
+            $('.conetet').show();
+            $('.personalProfile').hide();
+            $('#personalInfo').hide();
+            $('#groupInfo').hide();
+        })
+
+         $('#returnMember').click(function(){
+            $('.moreList').show();
+            $('.memberList').hide();
+            $('.GroupMemberList').remove();
+        })
+
+         function escShut(){
+            $('.forbidDiv').hide();
+            $('#forbidTime').value(0);
+         }
+    </script>
+</body>
+</html>
+
+
